@@ -1,0 +1,47 @@
+.login-container {
+    position: relative;
+    overflow: hidden;
+}
+
+.sakura-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none; /* 背景要素をクリックできないようにする */
+}
+
+.sakura {
+    position: absolute;
+    top: -100px; /* 花びらが上から出現するように */
+    width: 90px;
+    height: 100px;
+    background: url('/static/images/sakura.png') no-repeat center center;
+    background-size: contain;
+    animation: fall linear infinite;
+    animation-duration: 10s;
+    pointer-events: none; /* 背景要素をクリックできないようにする */
+}
+
+@keyframes fall {
+    0% {
+        transform: translateY(0) rotate(0deg); /* 初期位置 */
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(95vh) rotate(360deg); /* 画面下まで落ちる */
+        opacity: 0; /* 透明にする */
+    }
+}
+
+/* 花びらの生成をランダムにするためのスタイル */
+.sakura:nth-child(1) { left: 10%; animation-delay: 0s; }
+.sakura:nth-child(2) { left: 20%; animation-delay: 2s; }
+.sakura:nth-child(3) { left: 30%; animation-delay: 4s; }
+.sakura:nth-child(4) { left: 40%; animation-delay: 6s; }
+.sakura:nth-child(5) { left: 50%; animation-delay: 1s; }
+.sakura:nth-child(6) { left: 60%; animation-delay: 3s; }
+.sakura:nth-child(7) { left: 70%; animation-delay: 5s; }
+.sakura:nth-child(8) { left: 80%; animation-delay: 7s; }
+.sakura:nth-child(9) { left: 90%; animation-delay: 9s; }

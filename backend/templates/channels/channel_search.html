@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block title %}{% endblock%}
+
+{% block content %}
+    <div class="m-5">
+        <h3>Channel Search</h1>
+        <div class="ms-3">
+            <form method="GET" action="{% url 'channels:channel_search' %}">
+                <input type="text" name="channel_keyword" placeholder="Channel KeyWord">
+                <button type="submit">検索</button>
+            </form>
+        </div>
+    </div>
+    {% for item in channel_info %}
+        <div class="hstack m-5">
+            <img src={{ item.channel_icon_url.0 }} alt={{ item.channel_name.0 }} class="img-fluid" style="width: 200px; height: 200px; object-fit: cover;">
+            <div class="ms-3">
+                <h5 class="mb-1">{{ item.channel_name.0 }}</h5>
+                <p class="text-body-secondaty">{{ item.description.0 }}</p>
+                <form method="POST" action="{% url 'channels:channel_register' %}">
+                    {% csrf_token %}
+                    <input type="hidden" name="channel_id" value={{ item.channel_id }}>
+                    <button class="btn btn-success">チャンネル登録</button>
+                </form>
+            </div>
+        </div>
+    {% endfor %}
+{% endblock %}

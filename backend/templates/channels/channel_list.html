@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block title %}{% endblock%}
+
+{% block content %}
+    {% for item in channels %}
+        <div class="hstack m-5">
+            <img src={{ item.channel_icon_url }} alt={{ item.channel_name }} class="img-fluid" style="width: 200px; height: 200px; object-fit: cover;">
+            <div class="ms-3">
+                <h5 class="mb-1">{{ item.channel_name }}</h5>
+                <p class="text-body-secondaty">{{ item.description }}</p>
+                <form method="POST" action="{% url 'channels:channel_unregister' %}">
+                    {% csrf_token %}
+                    <input type="hidden" name="channel_id" value={{ item.channel_id }}>
+                    <button class="btn btn-success">登録解除</button>
+                </form>
+            </div>
+        </div>
+    {% endfor %}
+{% endblock %}
